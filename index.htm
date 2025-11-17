@@ -1,269 +1,147 @@
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
-<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
-<meta name=Generator content="Microsoft Word 15 (filtered)">
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Aptos;}
-@font-face
-	{font-family:"Aptos Display";}
-@font-face
-	{font-family:Kalinga;
-	panose-1:2 11 5 2 4 2 4 2 2 3;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:8.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:12.0pt;
-	font-family:"Aptos",sans-serif;}
-h1
-	{mso-style-link:"Heading 1 Char";
-	margin-top:.25in;
-	margin-right:0in;
-	margin-bottom:4.0pt;
-	margin-left:0in;
-	line-height:115%;
-	page-break-after:avoid;
-	font-size:20.0pt;
-	font-family:"Aptos Display",sans-serif;
-	color:#0F4761;
-	font-weight:normal;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:8.0pt;
-	margin-left:.5in;
-	line-height:115%;
-	font-size:12.0pt;
-	font-family:"Aptos",sans-serif;}
-p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	line-height:115%;
-	font-size:12.0pt;
-	font-family:"Aptos",sans-serif;}
-p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	line-height:115%;
-	font-size:12.0pt;
-	font-family:"Aptos",sans-serif;}
-p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:8.0pt;
-	margin-left:.5in;
-	line-height:115%;
-	font-size:12.0pt;
-	font-family:"Aptos",sans-serif;}
-span.Heading1Char
-	{mso-style-name:"Heading 1 Char";
-	mso-style-link:"Heading 1";
-	font-family:"Aptos Display",sans-serif;
-	color:#0F4761;}
-p.Default, li.Default, div.Default
-	{mso-style-name:Default;
-	margin:0in;
-	text-autospace:none;
-	font-size:12.0pt;
-	font-family:"Aptos",sans-serif;
-	color:black;}
-.MsoChpDefault
-	{font-size:12.0pt;
-	font-family:"Aptos",sans-serif;}
-.MsoPapDefault
-	{margin-bottom:8.0pt;
-	line-height:115%;}
- /* Page Definitions */
- @page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
- /* List Definitions */
- ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
--->
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mid Nov 2025 — Work Report</title>
+  <meta name="description" content="Mid November 2025 progress: EDTA spray detection prototype and field demo at Nasmed." />
+  <style>
+    /* === Modern, readable report styling — matches previous template === */
+    :root{
+      --bg: #ffffff;
+      --fg: #0f172a;       /* slate-900 */
+      --muted:#475569;     /* slate-600 */
+      --link:#2563eb;      /* blue-600 */
+      --border:#e5e7eb;    /* gray-200 */
+      --shade:#f8fafc;     /* slate-50 */
+      --maxw: 78ch;
+      --radius: 16px;
+    }
 
+    html, body { height: 100%; }
+    body{
+      margin:0; background:var(--bg); color:var(--fg);
+      font: 16px/1.7 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+
+    /* Header */
+    .header{
+      background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 60%);
+      color:#fff; padding: 3.25rem 1.25rem 2.5rem; position: relative; overflow: hidden;
+    }
+    .header::after{
+      content:""; position:absolute; inset:0; opacity:.15;
+      background: radial-gradient(1200px 500px at 10% 0%, rgba(255,255,255,.6), transparent 60%),
+                  radial-gradient(900px 400px at 90% 100%, rgba(255,255,255,.35), transparent 60%);
+      pointer-events:none;
+    }
+    .wrap{ max-width: 1100px; margin:0 auto; position:relative; }
+    .title{ margin:0; font-size: clamp(1.75rem, 3.2vw, 2.4rem); font-weight:800; letter-spacing:.2px; }
+    .subtitle{ margin:.5rem 0 0; font-size: clamp(1.05rem, 1.6vw, 1.15rem); opacity:.95 }
+    .chips{ display:flex; flex-wrap:wrap; gap:.5rem; margin:.75rem 0 0; }
+    .chip{ font-size:.825rem; background: rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.35); color:#fff; padding:.25rem .55rem; border-radius:999px; }
+
+    /* Content */
+    .content{ max-width: var(--maxw); margin: 2.25rem auto 4rem; padding: 0 1.25rem; }
+    h1,h2,h3{ line-height:1.2; margin: 2rem 0 .9rem; }
+    h1{ font-size: clamp(1.6rem, 2.6vw, 2rem); font-weight:800; color:#0F4761; }
+    h2{ font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight:750; border-bottom: 1px solid var(--border); padding-bottom:.35rem; color:#0F4761; }
+    h3{ font-size: clamp(1.05rem, 1.6vw, 1.25rem); font-weight:700; }
+    p{ margin: 1rem 0; }
+    a{ color:var(--link); text-underline-offset: 3px; }
+    .lead{ font-size:1.05rem; color:var(--muted); }
+
+    .grid{ display:grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .callout{ border:1px solid var(--border); border-radius: var(--radius); background: var(--shade); padding:1rem 1.1rem; }
+
+    figure{ margin: 1.25rem 0; }
+    img{ display:block; max-width:100%; height:auto; border-radius: 10px; }
+    figcaption{ font-size:.92rem; color:var(--muted); text-align:center; margin-top:.5rem; }
+
+    table{ border-collapse: collapse; width:100%; margin:1rem 0; font-size: .97rem; }
+    th, td{ border:1px solid var(--border); padding:.65rem .75rem; vertical-align: top; }
+    thead th{ background:#f8fafc; text-align:left; font-weight: 700; }
+    tbody tr:nth-child(even){ background: #fcfdff; }
+
+    @media print{
+      .header{ background:#fff; color:#000; }
+      .header::after{ display:none; }
+      a{ color:inherit; text-decoration: none; }
+      .content{ max-width: none; }
+      .chip{ border-color:#000; color:#000; background:#fff; }
+    }
+  </style>
 </head>
+<body>
+  <!-- Header / Hero -->
+  <header class="header">
+    <div class="wrap">
+      <h1 class="title">Mid‑November 2025 — Work Report</h1>
+      <p class="subtitle">Project: Real‑Time EDTA Spray Detection in Blood Collection Vials (Nasmed)</p>
+      <div class="chips">
+        <span class="chip">Prototype</span>
+        <span class="chip">Sensors</span>
+        <span class="chip">Field Demo</span>
+      </div>
+    </div>
+  </header>
 
-<body lang=EN-US style='word-wrap:break-word'>
+  <main class="content">
+    <!-- Project Title kept as text (no stripping) -->
+    <section>
+      <h2>Project 1: Real‑Time EDTA Spray Detection in Blood Collection Vials for Nasmed</h2>
 
-<div class=WordSection1>
+      <p>Progress focused on selection of the infrared (IR) sensor capable of detecting presence of spray within the blood sample collection vial. The TCRT5000 sensor was selected due to larger field of view capability. Additionally, it has an in‑built daylight blocking filter that cuts out ambient light, which delivers a higher signal‑to‑noise ratio (SNR).</p>
 
-<p class=MsoNormal style='line-height:normal'><span style='font-size:20.0pt;
-color:#0E4660'>Project 1: Real-Time EDTA Spray Detection in Blood Collection
-Vials for Nasmed</span></p>
+      <div class="grid">
+        <figure>
+          <img src="Mid%20Nov%202025%20Work%20Report_files/image001.png" alt="Image 001" />
+        </figure>
+        <figure>
+          <img src="Mid%20Nov%202025%20Work%20Report_files/image002.png" alt="Image 002" />
+          <figcaption>A group of test tubes on a circuit board</figcaption>
+        </figure>
+      </div>
 
-<p class=Default>&nbsp;</p>
+      <p>For an initial proof‑of‑concept (POC) device, 10x TCRT5000 breakout boards were procured and an intermediate design was conceptualized. The working principle is that droplets at the bottom of the vial scatter more infrared light and redirect it to the detector, thereby increasing the signal as compared to an empty vial. This difference in the light intensity is utilized to ascertain the presence of sprayed droplets, as shown in the graph below.</p>
 
-<p class=Default style='text-align:justify'>
+      <figure>
+        <img src="Mid%20Nov%202025%20Work%20Report_files/image003.png" alt="Graph image" />
+      </figure>
 
-<table cellpadding=0 cellspacing=0>
- <tr>
-  <td width=471 height=0></td>
- </tr>
- <tr>
-  <td></td>
-  <td><img width=181 height=271
-  src="Mid%20Nov%202025%20Work%20Report_files/image001.png"></td>
- </tr>
-</table>
+      <figure>
+        <img src="Mid%20Nov%202025%20Work%20Report_files/image004.jpg" alt="3D printed prototype" />
+      </figure>
 
-<br clear=ALL>
-Progress focused on selection of the infrared (IR) sensor capable of detecting
-presence of spray within the blood sample collection vial. The TCRT5000 sensor
-was selected due to larger field of view capability. Additionally, it has an
-in-built daylight blocking filter that cuts out ambient light, which delivers a
-higher signal-to-noise ratio (SNR). </p>
+      <p>A local firm was engaged to come up with a 3D printed prototype for the sensor layer to evaluate more realistic spraying scenarios. The sensor layer was also modified to handle the asymmetry introduced by the label on the vial. Using the same external rack design, the sensor layer was integrated into the rack, as shown below. A microcontroller board was used to receive analog light signals and convert to digital for processing. The microcontroller also has WiFi capabilities and a server was set up on the host computer, so that any device in the network could access the GUI.</p>
 
-<p class=Default style='text-align:justify'>
+      <p>A GUI was developed to visualize the various states of the detector i.e. NO VIAL, VIAL, VIAL+SPRAY, with colors of gray, yellow and green, respectively.</p>
 
-<table cellpadding=0 cellspacing=0 align=left>
- <tr>
-  <td width=16 height=0></td>
- </tr>
- <tr>
-  <td></td>
-  <td><img width=265 height=265
-  src="Mid%20Nov%202025%20Work%20Report_files/image002.png"
-  alt="A group of test tubes on a circuit board&#10;&#10;AI-generated content may be incorrect."></td>
- </tr>
-</table>
+      <figure>
+        <img src="Mid%20Nov%202025%20Work%20Report_files/image005.png" alt="GUI screenshot" />
+      </figure>
+    </section>
 
-<br clear=ALL>
-</p>
+    <section>
+      <h1>Demo at Nasmed on 15 Nov, 2025</h1>
+      <p>Based on some in‑house testing, a demo was set up with Nasmed technical lead, Mr. Prashant and Mr. Suril, Director. Vials with and without spray were procured from the factory and tests were done to ascertain the presence of spray. Clear differences were observed, with minimal recalibration. Additionally, the wireless functionality was demonstrated by setting up a local server and then accessing the GUI from any phone on the network via browser.</p>
 
-<p class=Default style='text-align:justify'>For an initial proof-of-concept
-(POC) device, 10x TCRT5000 breakout boards were procured and an intermediate
-design was conceptualized. The working principle is that droplets at the bottom
-of the vial scatter more infrared light and redirect it to the detector,
-thereby increasing the signal as compared to an empty vial. This difference in
-the light intensity is utilized to ascertain the presence of sprayed droplets,
-as shown in the graph below.</p>
+      <figure>
+        <img src="Mid%20Nov%202025%20Work%20Report_files/image006.gif" alt="Demo clip" />
+      </figure>
 
-<p class=Default style='text-align:justify'>
+      <p>A sample video is shown that captures the testing process. This video was captured during in‑house testing, where it is challenging to replicate the spray pattern of the factory. But a splatter of drops at the bottom of the vial works equally well as verified during the field test at Nasmed.</p>
+    </section>
 
-<table cellpadding=0 cellspacing=0 align=left>
- <tr>
-  <td width=220 height=0></td>
- </tr>
- <tr>
-  <td></td>
-  <td><img width=298 height=270
-  src="Mid%20Nov%202025%20Work%20Report_files/image003.png"></td>
- </tr>
-</table>
-
-<br clear=ALL>
-</p>
-
-<p class=Default style='text-align:justify'>&nbsp;</p>
-
-<p class=MsoNormal style='text-align:justify'>
-
-<table cellpadding=0 cellspacing=0>
- <tr>
-  <td width=250 height=0></td>
- </tr>
- <tr>
-  <td></td>
-  <td><img width=282 height=336
-  src="Mid%20Nov%202025%20Work%20Report_files/image004.jpg"></td>
- </tr>
-</table>
-
-<br clear=ALL>
-A local firm was engaged to come up with a 3D printed prototype for the sensor
-layer to evaluate more realistic spraying scenarios. The sensor layer was also
-modified to handle the asymmetry introduced by the label on the vial. Using the
-same external rack design, the sensor layer was integrated into the rack, as
-shown below. A microcontroller board was used to receive analog light signals
-and convert to digital for processing. The microcontroller also has WiFi
-capabilities and a server was set up on the host computer, so that any device
-in the network could access the GUI.</p>
-
-<p class=MsoNormal>&nbsp;</p>
-
-<p class=MsoNormal>A GUI was developed to visualize the various states of the
-detector i.e. NO VIAL, VIAL, VIAL+SPRAY, with colors of gray, yellow and green,
-respectively.</p>
-
-<p class=MsoNormal><img width=620 height=199 id="Picture 2"
-src="Mid%20Nov%202025%20Work%20Report_files/image005.png"
-alt="A screenshot of a computer&#10;&#10;AI-generated content may be incorrect."></p>
-
-<p class=MsoNormal>&nbsp;</p>
-
-<h1>Demo at Nasmed on 15 Nov, 2025</h1>
-
-<p class=MsoNormal style='text-align:justify'>Based on some in-house testing, a
-demo was set up with Nasmed technical lead, Mr. Prashant and Mr. Suril,
-Director. Vials with and without spray were procured from the factory and tests
-were done to ascertain the presence of spray. Clear differences were observed,
-with minimal recalibration. Additionally, the wireless functionality was
-demonstrated by setting up a local server and then accessing the GUI from any
-phone on the network via browser.</p>
-
-<p class=MsoNormal style='text-align:justify'>
-
-<table cellpadding=0 cellspacing=0>
- <tr>
-  <td width=290 height=0></td>
- </tr>
- <tr>
-  <td></td>
-  <td><img width=199 height=354
-  src="Mid%20Nov%202025%20Work%20Report_files/image006.gif"></td>
- </tr>
-</table>
-
-<br clear=ALL>
-A sample video is shown that captures the testing process. This video was
-captured during in-house testing, where it is challenging to replicate the
-spray pattern of the factory. But a splatter of drops at the bottom of the vial
-works equally well as verified during the field test at Nasmed.</p>
-
-<h1>Next steps</h1>
-
-<p class=MsoNormal>Based on the fact that the proof of concept was
-satisfactory, the next steps are the following:</p>
-
-<p class=MsoListParagraphCxSpFirst style='text-indent:-.25in'>1.<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Move
-to Phase 2 of the proposal, that involves a custom PCB electronics board design
-for the sensor layer. An electronics designed has been engaged and we will
-start the design work in the week of 17/11. This phase is expected to complete
-in 4-5 weeks of time including manufacturing 5 boards. The design process will
-involve dimensioning, component selection, electronic schematics, layout,
-generation of manufacturing files, manufacturing, assembly and testing.</p>
-
-<p class=MsoListParagraphCxSpLast style='text-indent:-.25in'>2.<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Based
-on the success of the POC, a patent will be filed on this idea. An IP firm has
-been engaged and the internal drafting process has been initiated.</p>
-
-</div>
-
+    <section>
+      <h1>Next steps</h1>
+      <p>Based on the fact that the proof of concept was satisfactory, the next steps are the following:</p>
+      <ol>
+        <li>Move to Phase 2 of the proposal, that involves a custom PCB electronics board design for the sensor layer. An electronics designed has been engaged and we will start the design work in the week of 17/11. This phase is expected to complete in 4–5 weeks of time including manufacturing 5 boards. The design process will involve dimensioning, component selection, electronic schematics, layout, generation of manufacturing files, manufacturing, assembly and testing.</li>
+        <li>Based on the success of the POC, a patent will be filed on this idea. An IP firm has been engaged and the internal drafting process has been initiated.</li>
+      </ol>
+    </section>
+  </main>
 </body>
-
 </html>
